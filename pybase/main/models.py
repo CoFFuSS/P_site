@@ -8,4 +8,4 @@ class Main(models.Model):
     time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
    
- 
+  
