@@ -22,8 +22,8 @@ from main.views import *
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('main.urls')),
+    path('', index, name='home'),
+    path('about/', about, name='about'),
 ]
 
 if settings.DEBUG:
