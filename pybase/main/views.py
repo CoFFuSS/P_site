@@ -14,7 +14,8 @@ def index(request):  # HttpRequest
     context = {
         'posts': posts,
         'menu': menu,
-        'title': 'Главная страница'
+        'title': 'Главная страница',
+        'cat_selected': 0,
     }
     return render(request, 'main/index.html', context=context)
 
@@ -38,5 +39,20 @@ def login(request):
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
 
+
 def show_post(request, post_id):
     return HttpResponse(f"Отображение статьи с id = {post_id}")
+
+
+def show_category(request, cat_id):
+    posts = Main.objects.filter(cat_id=cat_id)
+
+    if len(posts) == 0:
+        raise Http404()
+    context = {
+        'posts': posts,
+        'menu': menu,
+        'title': 'Отображение по рубрикам',
+        'cat_selected': cat_id,
+    }
+    return render(request, 'main/index.html', context=context)
