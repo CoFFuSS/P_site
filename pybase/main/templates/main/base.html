@@ -28,13 +28,12 @@
               <li class="logo">
                 <a href="{% url 'home' %}"><div class="logo"></div></a>
               </li>
-              {% for m in menu %} {% if not forloop.last %}
+              {% for m in menu %}
               <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
-              {% else %}
+              {% endfor %}
               <li class="last">
-                <a href="{% url m.url_name %}">{{m.title}}</a>
+                <a href="{% url 'register' %}">Регистрация</a> | <a href="{ url 'login' }">Войти</a>
               </li>
-              {% endif %} {% endfor %}
             </ul>
             <div class="clear"></div>
           </div>
@@ -121,7 +120,7 @@
         <td valign="top">
           <div id="footer">
             <p>
-              &copy; 2021 Частичное или полное копирование информации с данного
+              &copy; 2023 Частичное или полное копирование информации с данного
               сайта для распространения на других ресурсах, в том числе и
               бумажных, строго запрещено.
             </p>
