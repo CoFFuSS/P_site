@@ -26,7 +26,7 @@ class Main(models.Model):
     class Meta:
         verbose_name = 'Главная страница'
         verbose_name_plural = 'Главная страница'
-        ordering = ['-time_create', 'title']
+        ordering = ['id',]
 
 
 class Category(models.Model):

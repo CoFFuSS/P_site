@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 
 from .models import *
 from .forms import *
@@ -39,7 +40,11 @@ class MainHome(DataMixin, ListView):
 
 
 def about(request):  # HttpRequest
-    return render(request, 'main/about.html', {'menu': menu, 'title': 'О сайте'})
+    contact_list = Main.objects.all()
+    paginator = Paginator(contact_list, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'main/about.html', {'page_obj': page_obj, 'menu': menu, 'title': 'О сайте'})
 
 
 class AddPage(LoginRequiredMixin, DataMixin, CreateView):
